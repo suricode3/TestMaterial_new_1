@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
 
-
+    int testvariableforcommit=0;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

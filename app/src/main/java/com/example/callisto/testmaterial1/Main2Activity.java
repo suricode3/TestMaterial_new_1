@@ -31,8 +31,8 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-        recyclerView.setAdapter(new BranchAdapter(this,items));
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setAdapter(new BranchAdapter(this,items,recyclerView));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

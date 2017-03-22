@@ -2,9 +2,11 @@ package com.example.callisto.testmaterial1;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +22,15 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     LayoutInflater inflater;
     List<BranchItems> items;
     Context context;
+    int mExpandedPosition=-1;
+    RecyclerView recyclerView;
 
-    public BranchAdapter(Context context,List<BranchItems> items)
+    public BranchAdapter(Context context,List<BranchItems> items,RecyclerView recyclerView)
     {
         inflater=LayoutInflater.from(context);
         this.items=items;
         this.context=context;
+        this.recyclerView=recyclerView;
     }
 
     public BranchAdapter(){}
@@ -43,21 +48,26 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     }
 
     @Override
-    public void onBindViewHolder(BranchViewHolder holder, int position) {
+    public void onBindViewHolder(final BranchViewHolder holder, int position) {
 
         holder.tvName.setText(items.get(position).getBranchName());
         holder.tvDate.setText(items.get(position).getWorkingDate());
 
-        if(position%3==0)
-        {
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            holder.imageView.setImageResource(R.mipmap.utilities);
-        }
-    else
-        {
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            holder.imageView.setImageResource(R.mipmap.ic_launcher);
-        }
+
+                    final boolean isExpanded = position==mExpandedPosition;
+                    holder.tvDate.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+                    holder.itemView.setActivated(isExpanded);
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mExpandedPosition = isExpanded ? -1:holder.getAdapterPosition();
+                            TransitionManager.beginDelayedTransition(recyclerView);
+
+                            notifyDataSetChanged();
+                        }
+                    });
+
+
 
     }
 
@@ -105,13 +115,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         public BranchViewHolder(View view)
         {
             super(view);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Toast.makeText(context,"clicked"+getPosition(),Toast.LENGTH_SHORT).show();
-            }
-        });
                 tvName=(TextView) view.findViewById(R.id.text1);
             tvDate=(TextView) view.findViewById(R.id.text2);
             imageView=(ImageView) view.findViewById(R.id.image1);
@@ -120,4 +124,6 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         }
 
     }
+
+
 }

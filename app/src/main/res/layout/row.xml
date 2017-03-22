@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    >
 
 
 
-    <FrameLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardElevation="6dp"
+
 
         >
 
@@ -21,7 +25,8 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:tint="@color/colorPrimary"/>
 
             <TextView
                 android:layout_marginTop="1dp"
@@ -32,8 +37,11 @@
                 android:text="text2"
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:textColor="@android:color/white"
-                android:padding="3dp"/>
+                android:textColor="@color/colorPrimary"
+                android:padding="3dp"
+                android:background="@drawable/comment_background"
+                android:stateListAnimator="@drawable/comment_selection"
+                />
 
             <TextView
                 android:layout_marginTop="1dp"
@@ -46,6 +54,6 @@
                 android:fontFamily="sans-serif"
                 android:visibility="gone"/>
         </LinearLayout>
-    </FrameLayout>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

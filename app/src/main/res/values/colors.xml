@@ -5,4 +5,6 @@
     <color name="colorAccent">#536DFE</color>
     <color name="blue400">#42a5f5</color>
     <color name="blue500">#2196f3</color>
+    <color name="comment_background">#e0f7fa</color>
+    <color name="selected_comment_background">#b2ebf2</color>
 </resources>

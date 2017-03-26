@@ -13,7 +13,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    int branch1;
+    int branch1;//addded comment here in branch
     int test1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
